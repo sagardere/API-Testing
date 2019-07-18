@@ -1,0 +1,29 @@
+{
+  "name": "trello-app",
+  "version": "1.0.0",
+  "description": "simple trello application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "keywords": [
+    "trello"
+  ],
+  "author": "Dongare Sachin",
+  "dependencies": {
+    "async": "^2.6.1",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
+    "email-validator": "^1.1.1",
+    "express": "^4.16.2",
+    "fs": "0.0.1-security",
+    "jsonwebtoken": "^8.2.0",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.0.9",
+    "morgan": "^1.9.0",
+    "password-hash": "^1.2.2",
+    "serve-favicon": "^2.4.5"
+  },
+  "license": "MIT"
+}
