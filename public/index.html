@@ -59,7 +59,6 @@
           email: $("#email").val(),
           password: $("#password").val()
         };
-        console.log("user.name", user);
         $.ajax({
           url: url,
           type: "POST",
@@ -71,9 +70,6 @@
             console.log("error", error);
           }
         });
-        // $.post((data = user), function(returnedData) {
-        //   console.log(returnedData);
-        // });
       });
     });
   </script>
