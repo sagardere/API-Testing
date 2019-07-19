@@ -12,7 +12,7 @@ router.get('/',function(req, res){
 
 //user
 router.post('/registration',userController.registration);
-router.post('/login',userController.login);
+// router.post('/login',userController.login);
 
 //export router
 module.exports = router;

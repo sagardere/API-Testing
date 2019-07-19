@@ -1,5 +1,5 @@
-var passwordHash = require('password-hash');
-var mongoModels = require('../mongoModels/index')();
+var passwordHash = require("password-hash");
+var mongoModels = require("../mongoModels/index")();
 var User = mongoModels.user();
 
 module.exports = () => {
@@ -9,14 +9,15 @@ module.exports = () => {
     console.log(">> Inside registration.");
 
     console.log(req.body);
-res.json({
-        success: false,
-        message: "Email not defined."
-      })
+    // res.json({
+    //   success: false,
+    //   message: "Email not defined."
+    // });
 
-    // var userName = req.body.userName;
+    var userName = req.body.name;
     // var email = req.body.email;
     // var password = req.body.password;
+    console.log("userName", userName);
 
     // if ((typeof userName == undefined) || userName == "") {
     //   res.json({
@@ -65,10 +66,10 @@ res.json({
     //           });
     //         }
     //       }); //save
-     //   }
+    //   }
     //  }); //findone
-   /// } 
-  } 
+    /// }
+  };
 
   result.login = (req, res) => {
     console.log("Inside login");
@@ -79,18 +80,18 @@ res.json({
       res.json({
         success: false,
         message: "Email not defined."
-      })
+      });
     } else if (password == undefined || password == "") {
       res.json({
         success: false,
         message: "Password not defined."
-      })
+      });
     } else {
       User.findOne({
         email: email
       }).exec((err, userInfo) => {
         if (userInfo) {
-          var newHashPass = (passwordHash.verify(password, userInfo.password));
+          var newHashPass = passwordHash.verify(password, userInfo.password);
           if (newHashPass == true) {
             res.json({
               success: true,
@@ -99,17 +100,17 @@ res.json({
           } else {
             res.json({
               success: false,
-              message: 'Incorrect Password..'
+              message: "Incorrect Password.."
             });
           }
         } else {
           res.json({
             success: false,
-            message: 'Email Not Register Please SignUp..'
+            message: "Email Not Register Please SignUp.."
           });
         }
       });
     }
-  }
+  };
   return result;
-}
+};
