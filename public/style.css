@@ -1,0 +1,16 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00B7FF;
+}
+.demo-form {
+	margin: 0 30%;
+}
+td[colspan="2"] {
+  text-align: center;
+}
+tr {
+  height: 30px;
+}
