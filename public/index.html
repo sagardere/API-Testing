@@ -1,20 +1,48 @@
 <!DOCTYPE html>
 <html>
-<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
 
 <h2>HTML Forms</h2>
 
-<form action="/action_page.php">
+<form>
   First name:<br>
-  <input type="text" name="firstname" value="Mickey">
+  <input type="text"  name = 'username' placeholder="Username" />
   <br>
   Last name:<br>
-  <input type="text" name="lastname" value="Mouse">
+  <input type="text" />
   <br><br>
-  <input type="submit" value="Submit">
-</form> 
-
-<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+  <input  type="button" id="submitdata">   Button  </input> 
+</form>
 
 </body>
+<script>
+
+
+$(document).ready(function(){
+  var url = "http://localhost:3000/registration"
+  var data = {
+    name:'username'
+  }
+
+  $('#submitdata').click(function(){
+  console.log('>> inside submitdata.');
+    $.ajax({
+    url:url,
+    type:"POST",
+    success: function(result){
+    console.log(result)
+  },
+  error: function(error){
+  console.log(error)
+ }
+  })
+    $.post(url,data,function(data,status){
+      console.log(status)
+      console.log(data)
+    })
+  })
+})
+</script>
 </html>
