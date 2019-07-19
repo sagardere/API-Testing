@@ -8,67 +8,46 @@ module.exports = () => {
   result.registration = (req, res) => {
     console.log(">> Inside registration.");
 
-    console.log(req.body);
-    // res.json({
-    //   success: false,
-    //   message: "Email not defined."
-    // });
+    var userName = (req && req.body && req.body.name) ? req.body.name : '';
+    var email = (req && req.body && req.body.email) ? req.body.email : '';
+    var password = (req && req.body && req.body.password) ? req.body.password : '';
 
-    var userName = req.body.name;
-    // var email = req.body.email;
-    // var password = req.body.password;
-    console.log("userName", userName);
+console.log(userName +' >> '+ email + +' >> '+ password);
 
-    // if ((typeof userName == undefined) || userName == "") {
-    //   res.json({
-    //     success: false,
-    //     message: "userName not defined."
-    //   })
-    // } else if ((typeof email == undefined) || email == "") {
-    //   res.json({
-    //     success: false,
-    //     message: "Email not defined."
-    //   })
-    // } else if ((typeof password == undefined) || password == "") {
-    //   res.json({
-    //     success: false,
-    //     message: "Password not defined."
-    //   })
-    // } else {
-    //   User.findOne({
-    //     email: email
-    //   }).exec((err, userInfo) => {
-    //     if (userInfo) {
-    //       res.json({
-    //         success: false,
-    //         message: "Email allready exists."
-    //       })
-    //     } else {
-    //       var hashedPassword = passwordHash.generate(password);
-    //       var user = new User({
-    //         userName: userName,
-    //         email: email,
-    //         password: hashedPassword
-    //       });
-    //       //save user information in dbs
-    //       user.save((err, userResult) => {
-    //         // console.log("userResult : " , userResult);
-    //         if (userResult) {
-    //           res.json({
-    //             success: true,
-    //             message: "User Registration Successfully.",
-    //             data: userResult
-    //           });
-    //         } else {
-    //           res.json({
-    //             success: false,
-    //             message: "Error in User Registration."
-    //           });
-    //         }
-    //       }); //save
-    //   }
-    //  }); //findone
-    /// }
+      User.findOne({
+        email: email
+      }).exec((err, userInfo) => {
+        if (userInfo) {
+          res.json({
+            success: false,
+            message: "Email allready exists."
+          })
+        } else {
+          var hashedPassword = passwordHash.generate(password);
+          var user = new User({
+            userName: userName,
+            email: email,
+            password: hashedPassword
+          });
+          //save user information in dbs
+          user.save((err, userResult) => {
+            // console.log("userResult : " , userResult);
+            if (userResult) {
+              res.json({
+                success: true,
+                message: "User Registration Successfully.",
+                data: userResult
+              });
+            } else {
+              res.json({
+                success: false,
+                message: "Error in User Registration."
+              });
+            }
+          }); //save
+      }
+     }); //findone
+     
   };
 
   result.login = (req, res) => {
