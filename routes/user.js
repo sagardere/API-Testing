@@ -12,7 +12,7 @@ module.exports = () => {
     var email = (req && req.body && req.body.email) ? req.body.email : '';
     var password = (req && req.body && req.body.password) ? req.body.password : '';
 
-console.log(userName +' >> '+ email + +' >> '+ password);
+    console.log(userName +' >> '+ email + +' >> '+ password);
 
       User.findOne({
         email: email
@@ -20,7 +20,7 @@ console.log(userName +' >> '+ email + +' >> '+ password);
         if (userInfo) {
           res.json({
             success: false,
-            message: "Email allready exists."
+            message: "Email already exists."
           })
         } else {
           var hashedPassword = passwordHash.generate(password);
