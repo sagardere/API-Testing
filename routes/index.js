@@ -6,6 +6,7 @@ const adminController = require('./admin')();
 
 router.get('/', (req, res) => {
   res.render('index');
+  //res.render('admin')
 });
 
 //user
