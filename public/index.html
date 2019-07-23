@@ -13,7 +13,8 @@
   <body>
     <div class="user-form">
       <h2>User Information</h2>
-      <table>
+      <form id="signup">
+        <table>
           <tr class="form-email">
             <td>
               Email:
@@ -23,61 +24,103 @@
             </td>
           </tr>
           <tbody>
-          <tr class="form-dateOfBirth">
-            <td>
-              Date of Birth:
-            </td>
-            <td>
-              <input type="text" id="dateOfBirth" placeholder="DOB" />
-            </td>
-          </tr>
-          <tr class="form-mobileNumber">
-            <td>
-              Mobile Number:
-            </td>
-            <td>
-              <input type="number" id="mobileNumber" placeholder="Mobile Number" />
-            </td>
-          </tr>
-          <tr class="form-city">
-            <td>
-              City:
-            </td>
-            <td>
-              <input type="text" id="city" placeholder="City" />
-            </td>
-          </tr>
-          <tr class="form-monthlyIncome">
-            <td>
-              Monthly Income:
-            </td>
-            <td>
-              <input type="number" id="monthlyIncome" placeholder="Monthly Incomer" />
-            </td>
-          </tr>
-          <tr class="form-loanAmount">
-            <td>
-              Loan Amount:
-            </td>
-            <td>
-              <input type="number" id="loanAmount" placeholder="Loan Amount" />
-            </td>
-          </tr>
-          <tr class="form-submit">
-            <td colspan="2">
-              <button type="button" class="btn btn-success" id="submitdata">
-                Submit
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            <tr class="form-dateOfBirth">
+              <td>
+                Date of Birth:
+              </td>
+              <td>
+                <input type="text" id="dateOfBirth" placeholder="DOB" />
+              </td>
+            </tr>
+            <tr class="form-mobileNumber">
+              <td>
+                Mobile Number:
+              </td>
+              <td>
+                <input
+                  type="number"
+                  id="mobileNumber"
+                  placeholder="Mobile Number"
+                />
+              </td>
+            </tr>
+            <tr class="form-city">
+              <td>
+                City:
+              </td>
+              <td>
+                <input type="text" id="city" placeholder="City" />
+              </td>
+            </tr>
+            <tr class="form-monthlyIncome">
+              <td>
+                Monthly Income:
+              </td>
+              <td>
+                <input
+                  type="number"
+                  id="monthlyIncome"
+                  placeholder="Monthly Incomer"
+                />
+              </td>
+            </tr>
+            <tr class="form-loanAmount">
+              <td>
+                Loan Amount:
+              </td>
+              <td>
+                <input
+                  type="number"
+                  id="loanAmount"
+                  placeholder="Loan Amount"
+                />
+              </td>
+            </tr>
+            <tr class="form-submit">
+              <td>
+                <button type="button" class="btn btn-info" id="previewdata">
+                  Preview
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-success" id="submitdata">
+                  Submit
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
     </div>
   </body>
   <script>
     $(document).ready(function() {
       //var url = "https://testrestapifordemo.herokuapp.com/userRegistration";
       var url = "http://localhost:3000/userRegistration";
+      $("#previewdata").click(function() {
+        var user = {
+          email: $("#email").val(),
+          dateOfBirth: $("#dateOfBirth").val(),
+          loanAmount: $("#loanAmount").val(),
+          mobileNumber: $("#mobileNumber").val(),
+          monthlyIncome: $("#monthlyIncome").val(),
+          city: $("#city").val()
+        };
+        alert(
+          "Preview \n Email : " +
+            user.email +
+            "\n Birth Date : " +
+            user.dateOfBirth +
+            "\n Loan amount : " +
+            user.loanAmount +
+            "\n Mobile Number : " +
+            user.mobileNumber +
+            "\n Monthly Income : " +
+            user.monthlyIncome +
+            "\n City : " +
+            user.city
+        );
+      });
       $("#submitdata").click(function() {
         var user = {
           email: $("#email").val(),
@@ -97,11 +140,14 @@
             console.log("error", error);
           }
         }).responseJSON;
-        if(registerData.success === true) {
-          alert("Registration successfull \n email : " + registerData.data.email);
+        if (registerData.success === true) {
+          alert(
+            "Registration successfull \n email : " + registerData.data.email
+          );
         } else {
           alert(registerData.message);
         }
+        $("#signup").trigger("reset");
       });
     });
   </script>

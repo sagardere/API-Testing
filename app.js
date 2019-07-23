@@ -13,7 +13,8 @@ const app = express();
 const index = require('./routes/index');
 
 //mongoose.connect(,{ useNewUrlParser: true });
-mongoose.connect(config.mongodbLocalHostUrl,{ useNewUrlParser: true });
+// mongoose.connect(config.mongodbLocalHostUrl,{ useNewUrlParser: true });
+mongoose.connect(config.mongodbMlabUrl, { useNewUrlParser: true });
 const db = mongoose.connection;
 
 //handle mongodb error
