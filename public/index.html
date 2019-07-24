@@ -1,154 +1,174 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Sign Up</title>
+
+    <!-- Font Icon -->
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
+      href="fonts/material-icon/css/material-design-iconic-font.min.css"
     />
-    <link rel="stylesheet" type="text/css" href="index.css" />
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div class="user-form">
-      <h2>User Information</h2>
-      <form id="signup">
-        <table>
-          <tr class="form-email">
-            <td>
-              Email:
-            </td>
-            <td>
-              <input type="text" id="email" placeholder="Email" />
-            </td>
-          </tr>
-          <tbody>
-            <tr class="form-dateOfBirth">
-              <td>
-                Date of Birth:
-              </td>
-              <td>
-                <input type="text" id="dateOfBirth" placeholder="DOB" />
-              </td>
-            </tr>
-            <tr class="form-mobileNumber">
-              <td>
-                Mobile Number:
-              </td>
-              <td>
-                <input
-                  type="number"
-                  id="mobileNumber"
-                  placeholder="Mobile Number"
-                />
-              </td>
-            </tr>
-            <tr class="form-city">
-              <td>
-                City:
-              </td>
-              <td>
-                <input type="text" id="city" placeholder="City" />
-              </td>
-            </tr>
-            <tr class="form-monthlyIncome">
-              <td>
-                Monthly Income:
-              </td>
-              <td>
-                <input
-                  type="number"
-                  id="monthlyIncome"
-                  placeholder="Monthly Incomer"
-                />
-              </td>
-            </tr>
-            <tr class="form-loanAmount">
-              <td>
-                Loan Amount:
-              </td>
-              <td>
-                <input
-                  type="number"
-                  id="loanAmount"
-                  placeholder="Loan Amount"
-                />
-              </td>
-            </tr>
-            <tr class="form-submit">
-              <td>
-                <button type="button" class="btn btn-info" id="previewdata">
-                  Preview
-                </button>
-              </td>
-              <td>
-                <button type="button" class="btn btn-success" id="submitdata">
-                  Submit
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
+    <div class="main">
+      <!-- Sign up form -->
+      <section class="signup">
+        <div class="container">
+          <div class="signup-content">
+            <div class="signup-form">
+              <h2 class="form-title">Sign up</h2>
+              <form class="register-form">
+                <div class="form-group">
+                  <label for="email"><i class="zmdi zmdi-email"></i></label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Email"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="dob"
+                    ><i class="zmdi zmdi-calendar"></i
+                  ></label>
+                  <input
+                    type="date"
+                    name="dob"
+                    id="dateOfBirth"
+                    placeholder="Date Of Birth"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="mob"><i class="zmdi zmdi-phone"></i></label>
+                  <input
+                    type="number"
+                    name="mob"
+                    id="mobileNumber"
+                    placeholder="Mobile"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="city"><i class="zmdi zmdi-city"></i></label>
+                  <input
+                    type="text"
+                    name="city"
+                    id="city"
+                    placeholder="City"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="Income"><i class="zmdi zmdi-balance-wallet"></i></label>
+                  <input
+                    type="number"
+                    name="Income"
+                    id="monthlyIncome"
+                    placeholder="Income"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="loanAmount"><i class="zmdi zmdi-balance-wallet"></i></label>
+                  <input
+                    type="number"
+                    name="loanAmount"
+                    id="loanAmount"
+                    placeholder="Loan Amount"
+                  />
+                </div>
+                <div class="buttons-action">
+                  <div class="form-group form-button">
+                    <button
+                      type="button"
+                      name="preview"
+                      id="previewdata"
+                      class="form-submit"
+                    >Preview</button>
+                  </div>
+                  <div class="form-group form-button">
+                    <input
+                      type="submit"
+                      name="signup"
+                      id="submitdata"
+                      class="form-submit"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="signup-image">
+              <figure>
+                <img src="images/signup-image.jpg" alt="sing up image" />
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-  </body>
-  <script>
-    $(document).ready(function() {
-      //var url = "https://testrestapifordemo.herokuapp.com/userRegistration";
-      var url = "http://localhost:3000/userRegistration";
-      $("#previewdata").click(function() {
-        var user = {
-          email: $("#email").val(),
-          dateOfBirth: $("#dateOfBirth").val(),
-          loanAmount: $("#loanAmount").val(),
-          mobileNumber: $("#mobileNumber").val(),
-          monthlyIncome: $("#monthlyIncome").val(),
-          city: $("#city").val()
-        };
-        alert(
-          "Preview \n Email : " +
-            user.email +
-            "\n Birth Date : " +
-            user.dateOfBirth +
-            "\n Loan amount : " +
-            user.loanAmount +
-            "\n Mobile Number : " +
-            user.mobileNumber +
-            "\n Monthly Income : " +
-            user.monthlyIncome +
-            "\n City : " +
-            user.city
-        );
-      });
-      $("#submitdata").click(function() {
-        var user = {
-          email: $("#email").val(),
-          dateOfBirth: $("#dateOfBirth").val(),
-          loanAmount: $("#loanAmount").val(),
-          mobileNumber: $("#mobileNumber").val(),
-          monthlyIncome: $("#monthlyIncome").val(),
-          city: $("#city").val()
-        };
-        var registerData = $.ajax({
-          url: url,
-          type: "POST",
-          data: user,
-          dataType: "json",
-          async: false,
-          error: function(error) {
-            console.log("error", error);
-          }
-        }).responseJSON;
-        if (registerData.success === true) {
+
+    <!-- JS -->
+    <script>
+      $(document).ready(function() {
+        //var url = "https://testrestapifordemo.herokuapp.com/userRegistration";
+        var url = "http://localhost:3000/userRegistration";
+        $("#previewdata").click(function() {
+          var user = {
+            email: $("#email").val(),
+            dateOfBirth: $("#dateOfBirth").val(),
+            loanAmount: $("#loanAmount").val(),
+            mobileNumber: $("#mobileNumber").val(),
+            monthlyIncome: $("#monthlyIncome").val(),
+            city: $("#city").val()
+          };
           alert(
-            "Registration successfull \n email : " + registerData.data.email
+            "Preview \n Email : " +
+              user.email +
+              "\n Birth Date : " +
+              user.dateOfBirth +
+              "\n Loan amount : " +
+              user.loanAmount +
+              "\n Mobile Number : " +
+              user.mobileNumber +
+              "\n Monthly Income : " +
+              user.monthlyIncome +
+              "\n City : " +
+              user.city
           );
-        } else {
-          alert(registerData.message);
-        }
-        $("#signup").trigger("reset");
+        });
+        $("#submitdata").click(function() {
+          var user = {
+            email: $("#email").val(),
+            dateOfBirth: $("#dateOfBirth").val(),
+            loanAmount: $("#loanAmount").val(),
+            mobileNumber: $("#mobileNumber").val(),
+            monthlyIncome: $("#monthlyIncome").val(),
+            city: $("#city").val()
+          };
+          var registerData = $.ajax({
+            url: url,
+            type: "POST",
+            data: user,
+            dataType: "json",
+            async: false,
+            error: function(error) {
+              console.log("error", error);
+            }
+          }).responseJSON;
+          if (registerData.success === true) {
+            alert(
+              "Registration successfull \n email : " + registerData.data.email
+            );
+          } else {
+            alert(registerData.message);
+          }
+          $("#signup").trigger("reset");
+        });
       });
-    });
-  </script>
+    </script>
+  </body>
 </html>
+
