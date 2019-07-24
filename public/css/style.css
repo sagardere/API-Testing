@@ -256,7 +256,6 @@ body {
   padding: 75px 0; }
 
 .signup-form, .signup-image, .signin-form, .signin-image {
-  width: 50%;
   overflow: hidden; }
 
 .signup-image {
@@ -289,8 +288,32 @@ figure {
   border: none;
   height: 50px;
 }
-  .form-submit:hover {
-    background: #4292dc; }
+.form-admin {
+  display: inline-block;
+  background: #49e275;;
+  color: #0c0b0b;
+  border-bottom: none;
+  width: auto;
+  padding: 15px 39px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  cursor: pointer; 
+  border: none;
+  height: 50px;
+  margin-right: 20px;
+}
+.second-column {
+  text-align: right;
+}
+.form-submit:hover {
+  background: #4292dc;
+}
+.form-admin:hover {
+  background: #19b747;
+}
 
 #signin {
   margin-top: 16px; }
