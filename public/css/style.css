@@ -183,7 +183,9 @@ h2 {
   font-weight: bold;
   color: #222;
   font-family: Poppins;
-  font-size: 36px; }
+  font-size: 36px; 
+  text-shadow: 2px 3px #a3a8ad;
+}
 
 .main {
   background: #f8f8f8;
