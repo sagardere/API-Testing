@@ -3,6 +3,7 @@ const async = require('async');
 const config = require('../config/index.js');
 const mongoModels = require("../mongoModels/index")();
 const Admin = mongoModels.admin();
+const User = mongoModels.user();
 
 module.exports = () => {
   var result = {};
@@ -91,5 +92,27 @@ module.exports = () => {
       });
     }
   };
+  
+  result.adminPageData = async (req, res) => {
+    console.log(">> Inside adminPageData.");
+
+    let usersData = await User.find({
+      "loanApproval" : false
+    }).select('-_id').lean();
+
+    if (usersData) {
+      return res.json({
+        success: true,
+        message: "Successfully getting all non approved loans user data.",
+        data:usersData
+      });
+    } else {
+      res.json({
+        success: false,
+        message: "Error getting non approved users loans."
+      });
+    }  
+  };
+
   return result;
 };

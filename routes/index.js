@@ -14,6 +14,7 @@ router.post('/userRegistration', userController.registration);
 // router.post('/login',userController.login);
 
 //Admin
+router.get('/adminPageData',adminController.adminPageData);
 router.post('/adminRegistration', adminController.registration);
 router.post('/adminLogin',adminController.login);
 

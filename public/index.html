@@ -105,7 +105,7 @@
                 <button
                   type="button"
                   name="admin"
-                  id="admin"
+                  id="adminSubmit"
                   class="form-admin"
                 />ADMIN</button>
               </div>
@@ -123,8 +123,12 @@
     <!-- JS -->
     <script>
       $(document).ready(function() {
-        //var url = "https://testrestapifordemo.herokuapp.com/userRegistration";
-        var url = "http://localhost:3000/userRegistration";
+        //var userRegUrl = "https://testrestapifordemo.herokuapp.com/userRegistration";
+        //var adminSubmitUrl = "https://testrestapifordemo.herokuapp.com/adminPageData";
+
+        var userRegUrl = "http://localhost:3000/userRegistration";
+        var adminSubmitUrl = "http://localhost:3000/adminPageData";
+
         $("#previewdata").click(function() {
           var user = {
             email: $("#email").val(),
@@ -159,7 +163,7 @@
             city: $("#city").val()
           };
           var registerData = $.ajax({
-            url: url,
+            url: userRegUrl,
             type: "POST",
             data: user,
             dataType: "json",
@@ -176,6 +180,25 @@
             alert(registerData.message);
           }
           $("#signup").trigger("reset");
+        });
+        $("#adminSubmit").click(function() {
+          var adminData = $.ajax({
+            url: adminSubmitUrl,
+            type: "GET",
+            dataType: "json",
+            async: false,
+            error: function(error) {
+              console.log("error", error);
+            }
+          }).responseJSON;
+          if (adminData.success === true) {
+            alert(
+              "Successfully get admin data of \n : " + adminData
+            );
+          } else {
+            alert(adminData.message);
+          }
+          $("#admin").trigger("admin");
         });
       });
     </script>
