@@ -102,12 +102,15 @@
             </div>
             <div class="second-column">
               <div class="admin-btn">
-                <button
-                  type="button"
-                  name="admin"
-                  id="adminSubmit"
-                  class="form-admin"
-                />ADMIN</button>
+                <a href="./adminRegistration.html">
+                  <button
+                    name="admin"
+                    id="adminSubmit"
+                    class="form-admin"
+                  >
+                    ADMIN
+                  </button>
+                </a>
               </div>
               <div class="signup-image">
                 <figure>
@@ -127,7 +130,7 @@
         //var adminSubmitUrl = "https://testrestapifordemo.herokuapp.com/adminPageData";
 
         var userRegUrl = "http://localhost:3000/userRegistration";
-        var adminSubmitUrl = "http://localhost:3000/adminPageData";
+        //var adminSubmitUrl = "http://localhost:3000/adminPageData";
 
         $("#previewdata").click(function() {
           var user = {
@@ -180,25 +183,6 @@
             alert(registerData.message);
           }
           $("#signup").trigger("reset");
-        });
-        $("#adminSubmit").click(function() {
-          var adminData = $.ajax({
-            url: adminSubmitUrl,
-            type: "GET",
-            dataType: "json",
-            async: false,
-            error: function(error) {
-              console.log("error", error);
-            }
-          }).responseJSON;
-          if (adminData.success === true) {
-            alert(
-              "Successfully get admin data of \n : " + adminData
-            );
-          } else {
-            alert(adminData.message);
-          }
-          $("#admin").trigger("admin");
         });
       });
     </script>

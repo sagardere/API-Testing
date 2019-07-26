@@ -8,74 +8,85 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" type="text/css" href="adminRegistrtion.css" />
+    <link rel="stylesheet" type="text/css" href="./adminRegistration.css" />
   </head>
   <body>
     <div class="admin-registration-form">
-      <h2>Admin Registration</h2>
-      <table>
-        <tbody>
-          <tr class="form-email">
-            <td>
-              Email:
-            </td>
-            <td>
-              <input type="text" id="email" placeholder="Email" />
-            </td>
-          </tr>
-          <tr class="form-mobileNumber">
-            <td>
-              Mobile Number:
-            </td>
-            <td>
-              <input type="text" id="mobileNumber" placeholder="Mobile Number" />
-            </td>
-          </tr>
-          <tr class="form-password">
-            <td>
-              Password:
-            </td>
-            <td>
-              <input type="password" id="password" placeholder="Password" />
-            </td>
-          </tr>
-          <tr class="form-submit">
-            <td colspan="2">
-              <button type="button" class="btn btn-success" id="submitdata">
-                Submit
-              </button>
-            </td>
-          </tr>
-        </tbody>
+      <h2>Loan Requests :</h2>
+      <table id="table">
+        <tr class="table-header">
+          <td>
+            Email
+          </td>
+          <td>
+            Loan Amt.
+          </td>
+          <td>
+            Monthly Income
+          </td>
+          <td>
+            Approve
+          </td>
+          <td>
+            Reject
+          </td>
+        </tr>
       </table>
     </div>
   </body>
   <script>
     $(document).ready(function() {
       //var url = "https://testrestapifordemo.herokuapp.com/adminRegistration";
-      var url = "http://localhost:3000/adminRegistration";
-      $("#submitdata").click(function() {
-        var admin = {
-          email: $("#email").val(),
-          mobileNumber: $("#mobileNumber").val(),
-          password: $("#password").val()
-        };
-        var registerData = $.ajax({
-          url: url,
-          type: "POST",
-          data: admin,
-          dataType: "json",
-          async: false,
-          error: function(error) {
-            console.log("error", error);
-          }
-        }).responseJSON;
-        if(registerData.success === true) {
-          alert("Admin Registration successfull \n email : " + registerData.data.email);
-        } else {
-          alert(registerData.message);
+      var adminSubmitUrl = "http://localhost:3000/adminPageData";
+      var adminData = $.ajax({
+        url: adminSubmitUrl,
+        type: "GET",
+        dataType: "json",
+        async: false,
+        error: function(error) {
+          console.log("error", error);
+        },
+        success: function(value) {
+          console.log("success", value);
         }
+      }).responseJSON;
+      var data = jQuery.map( adminData.data, function( n, i ) {
+        return (n);
       });
+      // $( "td" ).text( emails );
+      var newTr = null;
+      var resetTr = true;
+      $.each(data, function(index, data) {
+          if (!newTr) {
+              // create new row
+              newTr = $('<tr>');
+              // do not reset it this time
+              resetTr = true;
+          } else {
+              // we used the previous one so reset it this time
+              resetTr = false;
+          }
+          newTr.appendTo($("#table"))
+              .append($('<td>').text(data.email))
+              .append($('<td>').text(data.loanAmount))
+              .append($('<td>').text(data.monthlyIncome))
+              .append($("<td><button class='approve-btn' id='approve'>Approve</button>"))
+              .append($("<td><button class='reject-btn' id='reject'>Reject</button>"));
+
+          if (resetTr) {
+              newTr = null;
+          }
+      });
+      for ( var i = 0; i <= data.length * 2; i++ ) {
+        $( "button" ).eq( i ).on( "click", { value: i }, function( event ) {
+          var msgs = [
+            "button = " + $( this ).index(),
+            "event.data.value = " + event.data.value,
+            "i = " + i
+          ];
+          console.log( "msgs", msgs);
+        });
+      }
     });
   </script>
 </html>

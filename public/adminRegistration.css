@@ -2,15 +2,61 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-a {
-  color: #00B7FF;
-}
 .admin-registration-form {
-	margin: 0 30%;
+	margin: 0 14%;
 }
-td[colspan="2"] {
-  text-align: center;
+table {
+	border: 1px solid #b3afaf;
+	margin-top: 10px;
+	width: 100%;
 }
 tr {
   height: 30px;
+  border-bottom: 1px solid #b3afaf;
+
+}
+td {
+	padding: 10px;
+	border: 1px solid #b3afaf;
+  min-width: 150px;
+}
+h2 {
+  text-align: center;
+}
+.approve-btn {
+  display: inline-block;
+  background: #6dabe4;
+  color: #fff;
+  border-bottom: none;
+  width: 100%;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  cursor: pointer; 
+  border: none;
+  height: 32px;
+  padding: 0px 15px;
+}
+.reject-btn {
+  display: inline-block;
+  background: #d03a3a;
+  color: #fff;
+  border-bottom: none;
+  width: 100%;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  cursor: pointer; 
+  border: none;
+  height: 32px;
+  padding: 0px 15px;
+}
+.table-header {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
 }
