@@ -113,6 +113,37 @@ module.exports = () => {
       });
     }  
   };
+  result.approvedLoanByAdmin = async (req, res) => {
+    console.log(">> Inside approvedLoanByAdmin.");
+    console.log(req.body.email)
+
+    if (req && req.body && req.body.email) {
+      var updateQuery = {$set: { "loanApproval": true }};
+
+      let updateUser = await User.update({
+        email: req.body.email
+      }, updateQuery);
+
+      console.log(req.body.email)
+
+      if (updateUser) {
+        res.json({
+          success: true,
+          message: "Successfully update user data for loan."
+        });
+      } else {
+          res.json({
+          success: false,
+          message: "Error updating user for loans."
+          });
+        }
+      } else {
+        res.json({
+          success: false,
+          message: "Email not defined."
+      });
+    }
+  };
 
   return result;
 };

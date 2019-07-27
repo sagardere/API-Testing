@@ -15,6 +15,7 @@ router.post('/userRegistration', userController.registration);
 
 //Admin
 router.get('/adminPageData',adminController.adminPageData);
+router.post('/approvedLoanByAdmin',adminController.approvedLoanByAdmin);
 router.post('/adminRegistration', adminController.registration);
 router.post('/adminLogin',adminController.login);
 

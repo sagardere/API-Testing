@@ -38,6 +38,8 @@
     $(document).ready(function() {
       //var url = "https://testrestapifordemo.herokuapp.com/adminRegistration";
       var adminSubmitUrl = "http://localhost:3000/adminPageData";
+      var loanApproveUrl = "http://localhost:3000/approvedLoanByAdmin";
+
       var adminData = $.ajax({
         url: adminSubmitUrl,
         type: "GET",
@@ -47,7 +49,7 @@
           console.log("error", error);
         },
         success: function(value) {
-          console.log("success", value);
+          //console.log("success", value);
         }
       }).responseJSON;
       var data = jQuery.map( adminData.data, function( n, i ) {
@@ -77,15 +79,54 @@
               newTr = null;
           }
       });
+      var emails = jQuery.map( adminData.data, function( n, i ) {
+        return ((n.email+"&"+n.email).split("&"));
+      });
+      // console.log(emails);
       for ( var i = 0; i <= data.length * 2; i++ ) {
-        $( "button" ).eq( i ).on( "click", { value: i }, function( event ) {
-          var msgs = [
-            "button = " + $( this ).index(),
-            "event.data.value = " + event.data.value,
-            "i = " + i
-          ];
-          console.log( "msgs", msgs);
-        });
+        $( "button" ).eq( i ).on( "click", { value: emails[i], index: i }, function( event ) {
+            var postData = {
+              email: event.data.value
+            }
+            // console.log( "postData", postData);
+
+            if(event.data.index % 2 === 0) {
+              // console.log("Approve");
+              var approveLoanData = $.ajax({
+                url: loanApproveUrl,
+                type: "POST",
+                data: postData,
+                dataType: "json",
+                async: false,
+                success: function(data) {
+                  console.log("success", data);
+                },
+                error: function(error) {
+                  console.log("error", error);
+                }
+              }).responseJSON;
+
+              var adminData = $.ajax({
+                url: adminSubmitUrl,
+                type: "GET",
+                dataType: "json",
+                async: false,
+                error: function(error) {
+                  console.log("error", error);
+                },
+                success: function(value) {
+                  //console.log("success", value);
+                }
+              }).responseJSON;
+
+              // after response of approved button
+
+              location.reload(true);
+            } else {
+              console.log("Reject");
+            }
+          }
+        );
       }
     });
   </script>
