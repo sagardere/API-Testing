@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
 //user
 router.post('/userRegistration', userController.registration);
 // router.post('/login',userController.login);
+router.get('/puppeteerTest', userController.puppeteerTest);
 
 //Admin
 router.get('/adminPageData',adminController.adminPageData);
