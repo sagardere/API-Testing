@@ -62,6 +62,7 @@ module.exports = () => {
       console.log(`Url : ${url}`);
       const browser = await puppeteer.launch({
         headless: true,
+        executablePath : '/tmp/build_2f0d3fb44d4fe05ce76074f44809a153/node_modules/puppeteer',
        // executablePath: '/usr/lib/node_modules/puppeteer/.local-chromium/linux-609904/chrome-linux/chrome',
         //executablePath: '/home/sagar/workspace/Script/node_modules/puppeteer/.local-chromium/linux-706915',
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
