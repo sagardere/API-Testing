@@ -11,7 +11,7 @@
   ],
   "author": "Dongare Sachin",
   "dependencies": {
-    "async": "^2.6.1",
+    "async": "^2.6.4",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
     "cookie-session": "^2.0.0-beta.3",
